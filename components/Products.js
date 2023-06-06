@@ -4,8 +4,10 @@ import Product from './Product'
 
 function Products({ products }) {
 
+  console.log(products)
+
   return (
-    <div className='grid grid-flow-row-dense lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xl:grid-cols-4 md:-mt-52'>
+    <div className='grid grid-flow-row-dense lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xl:grid-cols-4'>
       {
         products.slice(0, 4).map(({ id, title, image, price, description, category, rating }) => (
           <Product
