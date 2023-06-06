@@ -1,22 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function RatingFilter({ products }) {
-  const [rating, setRating] = useState("");
-
-  const handleFilterProducts = () => {
-    const _filterProducts = products.filter((prod) => {
-      if (prod.rating.rate >= parseInt(rating)) {
-        return true;
-      }
-    });
-
-    console.log(_filterProducts);
-  };
-
-  useEffect(() => {
-    handleFilterProducts();
-  }, [rating, products]);
-
+function RatingFilter({ rating, setRating }) {
   return (
     <div className="p-4 rounded ">
       <p className="font-semibold">Rating</p>

@@ -1,34 +1,19 @@
 import React, { use, useEffect, useState } from "react";
 
-function CategoryFilter({ products }) {
+function CategoryFilter({ products, selectedCategory, setSelectedCategory }) {
   const [productsCategory, setProductsCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [filteredProductsCategory, setFilteredProductsCategory] = useState([]);
-
+  
   const handleProductsCategory = () => {
     const category = products.map((prod) => prod.category);
     const uniqueCategory = [...new Set(category)];
     setProductsCategory(uniqueCategory);
   };
-
+  
   useEffect(() => {
     handleProductsCategory();
   }, []);
+  
 
-  const handleFilterProductByCategory = () => {
-    const _filterProductsByCategory = products.filter((prod) => {
-      if (prod.category === selectedCategory) {
-        return true;
-      }
-    });
-
-    console.log(_filterProductsByCategory);
-  };
-
-  useEffect(() => {
-    handleFilterProductByCategory();
-  }, [selectedCategory]);
-  console.log(selectedCategory);
 
   return (
     <div className="p-4 rounded ">

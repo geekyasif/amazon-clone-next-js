@@ -1,13 +1,88 @@
 import Head from "next/head";
-import Router from "next/router";
 import BottomHeader from "../components/BottomHearder";
-import Hearder from "../components/BottomHearder";
 import HomeCarousel from "../components/HomeCarousel";
 import Products from "../components/Products";
 import TopHeader from "../components/TopHeader";
 import Filter from "../components/Filter";
+import { useEffect, useState } from "react";
 
 export default function Home({ products }) {
+  const [minVal, setMinVal] = useState("");
+  const [maxVal, setMaxVal] = useState("");
+  const [filteredProducts , setFilteredProducts] = useState(products);
+
+  const handleFilterProducts = () => {
+      if(minVal !== "" && maxVal !== ""){
+        const _filterProducts = products.filter((prod) => {
+          if (prod.price >= parseInt(minVal) && prod.price <= parseInt(maxVal)) {
+            return true;
+          }
+        });
+    
+        setFilteredProducts(_filterProducts);
+      }else{
+        setFilteredProducts(products)
+      }
+  };
+
+  useEffect(() => {
+    handleFilterProducts();
+  }, [minVal, maxVal]);
+
+
+
+
+  const [rating, setRating] = useState("");
+  const handleRatingFilterProducts = () => {
+      if(rating !== ""){
+        const _filterProducts = products.filter((prod) => {
+          if (prod.rating.rate >= parseInt(rating)) {
+            return true;
+          }
+        });
+        setFilteredProducts(_filterProducts)
+      }else{
+        setFilteredProducts(products)
+      }
+  };
+
+  useEffect(() => {
+    handleRatingFilterProducts();
+  }, [rating]);
+
+
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const handleFilterProductByCategory = () => {
+    if(selectedCategory !== ""){
+      const _filterProductsByCategory = products.filter((prod) => {
+        if (prod.category === selectedCategory) {
+          return true;
+        }
+      });
+  
+      setFilteredProducts(_filterProductsByCategory)
+    }
+    else{
+      setFilteredProducts(products)
+    }
+  };
+
+  useEffect(() => {
+    handleFilterProductByCategory();
+  }, [selectedCategory]);
+
+
+  const handleClearFilter = () => {
+    setFilteredProducts(products)
+    setMinVal("")
+    setMaxVal("")
+    setSelectedCategory("")
+    setRating("")
+  }
+
+
+
   return (
     <div className="bg-gray-200">
       <Head>
@@ -20,8 +95,8 @@ export default function Home({ products }) {
       <div className="container mx-auto">
         <HomeCarousel />
         <div className="flex flex-row">
-          <Filter products={products} />
-          <Products products={products} />
+          <Filter products={products} minVal={minVal} maxVal={maxVal} setMinVal={setMinVal} setMaxVal={setMaxVal} rating={rating} setRating={setRating}  selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} handleClearFilter={handleClearFilter} />
+          <Products products={filteredProducts} />
         </div>
       </div>
     </div>

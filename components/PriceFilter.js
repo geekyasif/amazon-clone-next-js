@@ -1,24 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-function PriceFilter({ products }) {
-  const [minVal, setMinVal] = useState("");
-  const [maxVal, setMaxVal] = useState("");
-  const [filterProducts, setFilterProducts] = useState([]);
-
-  const handleFilterProducts = () => {
-    const _filterProducts = products.filter((prod) => {
-      if (prod.price >= parseInt(minVal) && prod.price <= parseInt(maxVal)) {
-        return true;
-      }
-    });
-
-    setFilterProducts(_filterProducts);
-  };
-
-  useEffect(() => {
-    handleFilterProducts();
-  }, [minVal, maxVal]);
-
+function PriceFilter({ minVal, maxVal, setMinVal, setMaxVal }) {
+ 
+  
   return (
     <div className=" p-4 rounded ">
       <p className="font-semibold">Price</p>
@@ -27,7 +11,7 @@ function PriceFilter({ products }) {
         value={minVal}
         onChange={(e) => setMinVal(e.target.value)}
       >
-        <option value="0">Min</option>
+        <option value="">Min</option>
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="50">50</option>
@@ -42,7 +26,7 @@ function PriceFilter({ products }) {
         value={maxVal}
         onChange={(e) => setMaxVal(e.target.value)}
       >
-        <option value="1500">Max</option>
+        <option value="">Max</option>
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="50">50</option>
