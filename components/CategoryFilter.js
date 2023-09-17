@@ -2,18 +2,16 @@ import React, { use, useEffect, useState } from "react";
 
 function CategoryFilter({ products, selectedCategory, setSelectedCategory }) {
   const [productsCategory, setProductsCategory] = useState([]);
-  
+
   const handleProductsCategory = () => {
     const category = products.map((prod) => prod.category);
     const uniqueCategory = [...new Set(category)];
     setProductsCategory(uniqueCategory);
   };
-  
+
   useEffect(() => {
     handleProductsCategory();
   }, []);
-  
-
 
   return (
     <div className="p-4 rounded ">
@@ -25,7 +23,9 @@ function CategoryFilter({ products, selectedCategory, setSelectedCategory }) {
       >
         <option value="">Choose Category</option>
         {productsCategory.map((cat) => (
-          <option value={cat}>{cat.toUpperCase()}</option>
+          <option key={cat} value={cat}>
+            {cat.toUpperCase()}
+          </option>
         ))}
       </select>
     </div>

@@ -16,7 +16,7 @@ function BottomHeader() {
 
                 <div className=""><Link href="#">Best Seller</Link></div>
                 <div className=""><Link href="#">Mobiles</Link></div>
-                <div className=""><Link href="#">Today's Deals</Link></div>
+                <div className=""><Link href="#">Today&#39;s Deals</Link></div>
                 <div className=""><Link href="#">Customer Service</Link></div>
                 <div className=""><Link href="#">Electronics</Link></div>
                 <div className=""><Link href="#">Prime</Link></div>

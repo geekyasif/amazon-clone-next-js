@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BottomHeader from '../components/BottomHearder'
 import TopHeader from '../components/TopHeader'
-import { Provider, useSelector } from 'react-redux';
-import Product from '../components/Product';
+import { useSelector } from 'react-redux';
 import CartProduct from '../components/CartProduct';
 
-function cart() {
+function Cart() {
 
     const products = useSelector(state => state.cart.products);
     let subtotal = 0;
@@ -60,4 +59,4 @@ function cart() {
     )
 }
 
-export default cart
+export default Cart

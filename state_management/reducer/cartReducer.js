@@ -64,7 +64,6 @@ export default function cartReducer(state = initialState, action) {
 
         }else{
 
-            console.log("Not found")
 
         }
         return {
